@@ -1,16 +1,22 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System;
 
 public class Snake : MonoBehaviour
 {
     private Vector2 _direction = Vector2.right;
     private List<Transform> _segments = new List<Transform>();
     public Transform segmentPrefab;
-    public int inititalSize = 4;
+    public int inititalSize = 1;
+    public Text score;
+    public GameObject Game_Over_UI;
 
     private void Start()
     {
         ResetState();
+
     }
 
     private void Update()
@@ -31,6 +37,8 @@ public class Snake : MonoBehaviour
         {
             _direction = Vector2.right;
         }
+
+       score.text = "Points: " + _segments.Count;
     }
 
     private void FixedUpdate()
@@ -53,6 +61,13 @@ public class Snake : MonoBehaviour
         segment.position = _segments[_segments.Count - 1].position;
 
         _segments.Add(segment);
+
+    }
+
+    public void Reset()
+    {
+       SceneManager.LoadScene(1);
+       Time.timeScale = 1;
     }
 
     private void ResetState()
@@ -80,6 +95,8 @@ public class Snake : MonoBehaviour
         }
         else if (other.tag == "Obstacle")
         {
+            Game_Over_UI.SetActive(true);
+            Time.timeScale = 0;
             ResetState();
         }
     }
