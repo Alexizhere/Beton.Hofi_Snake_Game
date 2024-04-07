@@ -38,7 +38,7 @@ public class Snake : MonoBehaviour
             _direction = Vector2.right;
         }
 
-       score.text = "Points: " + _segments.Count;
+       score.text = "Score: " + _segments.Count;
     }
 
     private void FixedUpdate()
