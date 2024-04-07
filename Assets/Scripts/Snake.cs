@@ -38,7 +38,7 @@ public class Snake : MonoBehaviour
             _direction = Vector2.right;
         }
 
-       score.text = "Score: " + _segments.Count;
+       score.text = "Fonogram díj: " + _segments.Count;
     }
 
     private void FixedUpdate()
@@ -86,6 +86,7 @@ public class Snake : MonoBehaviour
         if (other.tag == "Food")
         {
             Grow();
+            Time.timeScale += 0.02f;
         }
         else if (other.tag == "Obstacle")
         {
