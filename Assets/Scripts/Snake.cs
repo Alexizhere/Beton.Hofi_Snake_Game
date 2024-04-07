@@ -64,12 +64,6 @@ public class Snake : MonoBehaviour
 
     }
 
-    public void Reset()
-    {
-       SceneManager.LoadScene(1);
-       Time.timeScale = 1;
-    }
-
     private void ResetState()
     {
         for (int i = 1; i < _segments.Count; i++)
@@ -100,4 +94,18 @@ public class Snake : MonoBehaviour
             ResetState();
         }
     }
+
+    #region Menu_Options
+    public void Reset()
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+    }
+    public void QuitToMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+    #endregion
+
 }
